@@ -52,11 +52,23 @@ Find the reviews that matter to you, hear about it when people answer you - and 
 
 ### ✨ New
 
-- **Filter by your graphics card.** Pick your card in the Community filter - **My card** is always first - and see only the reviews from people with that same card.
-- **Reviews for your games.** Switch to **My games** and the Community page shows the reviews for the games installed on your PC. Open any game in your library and what the community found is right above Install.
-- **My comments** - everything you reported, in one place.
-- **Sort** by most recent, most reports or A-Z, and every card shows which APIs its reviews used ([#288]).
-- **Notifications** when someone mentions you in the chat, replies to you there, or reacts to your review or your message.
+**1 · Filter by your graphics card** - pick your card in the Community filter and see only the reviews from people with that same card. Your own card is always the first choice.
+
+<p><img src="docs/screenshots/15-feature-gpu-filter.png" alt="The Community page filtered to your own graphics card" width="100%"></p>
+
+**2 · Only the reviews from your card** - open any game with the filter on, and it starts on what people with your card found. Everyone else is one click away.
+
+<p><img src="docs/screenshots/16-feature-gpu-reviews.png" alt="A game opened on the reviews from people with your graphics card" width="100%"></p>
+
+**3 · Reviews for your games** - switch to **My games** and the page shows only the games installed on your PC, tagged when DLSS 5 is already in them.
+
+<p><img src="docs/screenshots/17-feature-my-games.png" alt="My games: community reviews for the games installed on this PC" width="100%"></p>
+
+**4 · See it before you install** - open any game in your library: what the community found for it is right above the install button.
+
+<p><img src="docs/screenshots/18-feature-before-install.png" alt="What the community found, in the game's page right above Install" width="100%"></p>
+
+Also new: **My comments** (everything you reported, in one place), **Sort** by most recent, most reports or A-Z, API tags on every card ([#288]), and **notifications** when someone mentions you in the chat, replies to you there, or reacts to your review or your message.
 
 ### 🔧 Fixed
 
