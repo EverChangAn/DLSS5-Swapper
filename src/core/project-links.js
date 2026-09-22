@@ -4,7 +4,8 @@
 const links = Object.freeze({
   github: 'https://github.com/rakanki911/DLSS5-Swapper',
   releases: 'https://github.com/rakanki911/DLSS5-Swapper/releases/latest',
-  coffee: 'https://buymeacoffee.com/rakanki911'
+  coffee: 'https://buymeacoffee.com/rakanki911',
+  bilibili: 'https://space.bilibili.com/5199773'
 });
 function projectUrl(key) {
   return typeof key === 'string' && Object.hasOwn(links, key) ? links[key] : null;

@@ -140,10 +140,12 @@ The install will go through. If the neural pass never appears in game, 616.56 is
     setFolders: 'Scanned folders', setAdd: 'Add', setLibrary: 'Library file', setReset: 'Reset',
     setRoots: 'Found on your drives',
     setPosters: 'Posters', setSaved: (n) => `${n} saved`, setLang: 'Language',
-    aboutTitle: 'DLSS 5 Swapper', aboutBody: 'Puts DLSS 5 Neural Rendering into your games, and takes it back out whenever you want.', aboutBy: 'Built by Rakan Alkhaldi',
+    aboutTitle: 'DLSS 5 Swapper', aboutBody: 'Puts DLSS 5 Neural Rendering into your games, and takes it back out whenever you want.', aboutBy: 'Built by Rakan Alkhaldi', aboutLocalized: 'Localization: bilibili: ',
     supportBody: 'DLSS 5 Swapper is free and MIT licensed. If it saved you an evening of fiddling, you can buy me a coffee - or scan the code with your phone.',
     agoNow: 'just now', agoMin: (n) => `${n} min ago`, agoHour: (n) => `${n} h ago`, agoDay: (n) => `${n} d ago`,
-    artFound: (a, b) => `Artwork: ${a} of ${b} found`, libReady: (n, d) => `Library ready — ${n} games, ${d} on DirectX 12`
+    artFound: (a, b) => `Artwork: ${a} of ${b} found`, libReady: (n, d) => `Library ready — ${n} games, ${d} on DirectX 12`,
+    olHotkeyTitle: 'Overlay hotkey',
+    olKeyHelp: 'Click the field, then press your shortcut. Ctrl, Alt and Shift are supported. Home / Escape stay reserved for ReShade.'
   },
   ar: {
     antiCheatWarningTitle: 'تحذير: اكتشاف مكافحة غش',
@@ -295,9 +297,88 @@ The install will go through. If the neural pass never appears in game, 616.56 is
     setFolders: '已扫描的文件夹', setAdd: '添加', setLibrary: '库文件', setReset: '重置',
     setRoots: '在磁盘上找到',
     setPosters: '封面', setSaved: (n) => `已保存 ${n} 个`, setLang: '语言',
-    aboutTitle: 'DLSS 5 Swapper', aboutBody: '为你的游戏装上 DLSS 5，也能随时还原。', aboutBy: '由 Rakan Alkhaldi 开发',
+    aboutTitle: 'DLSS 5 Swapper', aboutBody: '为你的游戏装上 DLSS 5，也能随时还原。', aboutBy: '由 Rakan Alkhaldi 开发', aboutLocalized: '汉化补全: bilibili: ',
     agoNow: '刚刚', agoMin: (n) => `${n} 分钟前`, agoHour: (n) => `${n} 小时前`, agoDay: (n) => `${n} 天前`,
-    artFound: (a, b) => `封面：${b} 个中找到 ${a} 个`, libReady: (n, d) => `库已就绪 — ${n} 个游戏，${d} 个使用 DirectX 12`
+    artFound: (a, b) => `封面：${b} 个中找到 ${a} 个`, libReady: (n, d) => `库已就绪 — ${n} 个游戏，${d} 个使用 DirectX 12`,
+    olHotkeyTitle: '叠加层热键', olKeyHelp: '点击输入框，然后按下你的快捷键。支持 Ctrl、Alt 和 Shift。Home / Escape 保留给 ReShade。',
+
+    // ===== 反作弊与安装前置警告 =====
+    antiCheatWarningTitle: '警告：检测到反作弊', antiCheatWarning: '此游戏似乎使用了反作弊。ReShade、Feeder 或 OptiScaler 可能导致崩溃、无法启动，甚至账号被封。安装是可选的：点击安装并明确接受风险后才能继续。本程序不会关闭或绕过反作弊。', errAntiCheatConsent: '检测到反作弊。请再次点击安装，查看警告后自行决定是否继续。', antiCheatRiskAccepted: '已确认本次安装尝试的反作弊风险。',
+    errManagedModpack: '检测到 Mod Organizer Stock Game / Root Builder 安装（例如 LoreRim）。直接注入可能与其管理的 ENB/ReShade 冲突。已阻止自动安装；请通过整合包管理器配置兼容性。还原原文件功能仍可使用。', errLoaderConflict: '存在冲突的图形加载器或 ReShade 挂钩。未覆盖任何冲突文件。请先还原此前的 Swapper 安装，或通过其自身安装程序管理外部 ENB/DXVK/ReShade，然后再重试。见下方文件路径。',
+    errRuntimeArchitecture: '所选可执行文件旁的现有 DLSS 运行库无法读取，或架构不匹配。请先还原或修复该安装；本次未覆盖它。', restoreProfileWarning: '可选的后端设置未能保存；继续还原游戏原文件。', errBackupInvalid: '原始备份不完整或无效，未执行完整还原。请保留 _DLSS5_Backup 文件夹不动；在日志中查看缺失文件，若原文件已丢失，请用游戏启动器修复游戏。本程序不会删除无法识别的游戏或 mod 文件。',
+    nativeEffectsHint: '原生 DLSS 使用「插件」页面，而不是 .fx 特效。仅凭「未找到特效」并不代表安装失败。请在游戏内启用 DLSS 并查看插件状态。Streamline 与帧生成文件会被保留。',
+
+    // ===== 渲染后端与 OptiScaler =====
+    fBackend: '渲染后端', backendReShade: 'ReShade（默认）', installedBackend: '已安装的后端', applyBackend: '应用后端更改', installOpti: '安装 OptiScaler DLSS-NR', operationCancelled: '已取消。未改动任何游戏文件。', fOptiBuild: 'OptiScaler 版本', optiBuildCurrent: '当前',
+    backendHint: '可选的单游戏后端。仅在游戏关闭时点击「应用 / 安装」才会生效。每个后端各自保存设置。',
+    optiHint: '可选的 OptiScaler DLSS-NR。需要启用原生 DLSS 的 64 位游戏。随附的神经模型仅在 Blackwell（RTX 50 系列或 RTX PRO Blackwell）上运行；较旧的显卡需要你自行提供修改版 nvngx_dlssnr.dll。建议使用 NVIDIA 616.56 或更新驱动，但非必需。反作弊游戏会显示风险警告并要求确认。首次使用时下载约 130 MB。不保证所有游戏都兼容。',
+    optiBridgeHint: 'DX11 / Vulkan：神经渲染通过 DX12 桥接并以 FSR 输出，而非原生 DLSS 输出。桥接会自动配置；请在游戏内保持选中 DLSS 以提供输入。', optiVulkanHint: '更改 Vulkan 后端需要先执行还原原文件。不能有全局 ReShade Vulkan 层处于活动状态；本程序不会自动禁用其他游戏的层注册。',
+    optiUnsupported: 'OptiScaler DLSS-NR 仅支持 64 位 DX11/DX12/Vulkan 游戏，不支持 DX8/DX9、OpenGL 或模拟器。', optiNeedsDlss: 'OptiScaler 需要游戏原有的 DLSS 管线。未找到原生 DLSS DLL；仅靠复制或注入的 DLL 不符合条件。',
+    errOptiHardware: '此 OptiScaler DLSS-NR 版本需要 RTX 50 系列显卡和 NVIDIA 616.56 或更新驱动。', errOptiVulkanLayer: '存在活动的全局 ReShade Vulkan 层。请先还原其管理的 Vulkan 安装；本程序不会为其他游戏禁用它。', errBackendVulkanSwitch: '对于 Vulkan，请先使用还原原文件，再安装另一个后端。设置已保存，将在下次安装时生效。',
+    errOptiConflict: '存在其他加载器或 mod。请先用其自身安装程序还原或移除该 mod。未覆盖任何冲突文件。', errOptiDownload: '无法下载并校验官方 OptiScaler 发行版。请检查网络后重试；当前后端未更改。', errOptiPayload: 'OptiScaler 文件包不完整、架构不匹配或校验失败。',
+    errGameRunning: '安装、切换或还原前，请关闭游戏及其辅助进程。', errProcessCheck: '无法确认游戏已关闭。请重启本程序后重试；未开始安装。', errJobBusy: '另一个安装或还原正在进行。请等待其完成。', errBackendRecovery: '上次切换被中断，需要恢复。请关闭游戏，然后点击还原原文件。请保持备份文件夹完整。',
+    optiDownloading: '正在下载并校验 OptiScaler…', optiVerified: '官方 OptiScaler 发行版校验通过。', backendSwitching: '正在保存设置并切换后端…', backendRecovered: '已恢复被中断的切换。',
+
+    // ===== 更新与状态提示 =====
+    updateAvailable: (version) => `有可用更新：v${version} ↗`, updateCheckFailed: () => '无法检查更新 — 这不代表「已是最新版本」。',
+    feedVkLayerReady: (rel) => `Vulkan 互操作层已安装。如果游戏内未出现 DLSS 5，请通过 ${rel} 启动游戏。`, neuralModelKept: (rel) => `已保留你现有的 ${rel}；未用随附模型覆盖它。`,
+
+    // ===== 隐藏游戏与导航 =====
+    setHidden: '已隐藏的游戏', setHiddenNone: '没有隐藏的游戏。', setUnhide: '重新显示', hideTitle: '隐藏此游戏？', navCommunity: '社区',
+    hideConfirm: (name) => `从列表中隐藏 ${name}？磁盘上的文件不会有任何变化，已安装的内容也会保留。可随时在设置中恢复显示。`,
+
+    // ===== 渲染器兼容性提示 =====
+    unsupportedRendererHint: 'Feeder 不支持原生 DirectX 10。若游戏提供 DirectX 11 模式，请选择该模式。此渲染器无法自动安装。', legacyRendererHint: 'DX8/9 需要 dgVoodoo2 → DirectX 11。首次安装时会从官方来源下载对应的封装层。如果深度信息不可用，请在游戏内关闭 MSAA/SSAA。',
+    runtimeRequiredHint: '请安装或修复官方 Microsoft Visual C++ 运行库，然后重试。32 位游戏需要同时安装 x86 和 x64 版本。', legacyDownloadHint: '无法校验官方 dgVoodoo2 下载。请检查网络后重试；现有安装未更改。',
+    xeniaUiHint: 'Xenia HUD 兼容性属于实验性功能。已应用保守的运动矢量/遮罩预设，但界面修正无法保证保留每个游戏的 HUD。若仍有异常，请提供游戏名称和 ReShade/Feeder 日志。', emulatorDepthHint: '如果画面异常，请在 ReShade 中选择正确的深度缓冲。',
+    rRendererInDll: '渲染器位于单独的 DLL 中 — 暂不支持', rXboxProtected: '受保护的 Xbox 程序包 — 请将其移动到或重新安装到 XboxGames 目录',
+
+    // ===== 日志与诊断 =====
+    copyLog: '复制日志', copyHistory: '复制历史', copied: '已复制到剪贴板', copyFailed: '复制失败。请选中文本后按 Ctrl+C，或重试。',
+    saveDiagnostics: '保存诊断文件', notesTitle: '关于此游戏的说明', notesWarning: '警告 — 安装前请先阅读',
+    diagnosticsSaved: (n) => `诊断文件已保存，包含 ${n} 个日志文件。请在反馈时一并附上。`,
+
+    // ===== 游戏右键菜单 =====
+    menuDetails: '查看游戏详情', menuOpen: '打开游戏文件夹', menuCopyPath: '复制文件夹路径', menuScan: '重新扫描此游戏', menuPoster: '更换封面', menuHide: '从游戏库中隐藏（保留文件）',
+    menuCommunity: '加入社区实测游戏', menuCommunityEdit: '编辑我的社区报告', menuCommunityRemove: '删除我的社区报告', menuCommunityRemoved: '已删除 {0} 的社区报告',
+    menuConfirmRestore: '为此游戏还原原文件？', menuRestoreHint: '请先关闭游戏。Swapper 安装的文件将被移除，并还原已备份的原文件。', menuNoBackup: '此游戏没有可用的有效备份。',
+    menuScanned: name => `扫描已更新：${name}`, menuActionFailed: (name, error) => `${name}：${error}`,
+
+    // ===== 历史记录 =====
+    historySnapshot: '备份记录', historyRecovered: '已恢复被中断的操作', historyLoadFailed: '无法加载历史记录。请重新打开此页面再试。',
+    historySaveWarning: '历史记录未能完整读取或保存。当前显示的是可用条目；请在关闭程序前将其复制出来，并检查应用数据文件夹的访问权限。',
+    overlaySkipped: (error) => `游戏内叠加层将不会安装：${error}。其余安装继续进行。`,
+    errNoWriteAccess: 'Windows 不允许本程序写入游戏文件夹，因此未做任何更改。安装在 Program Files 下的游戏受保护：请以管理员身份运行 DLSS 5 Swapper，或将游戏移动到其他文件夹。',
+
+    // ===== 社区反馈摘要 =====
+    sheetCommunityTitle: '社区反馈结果', sheetCommunityOpen: '查看报告', sheetCommunityNone: '此游戏暂无社区报告 — 安装之后，你可以成为第一个提交的人。',
+    sheetCommunityCounts: (reports, comments) => `${reports} 条报告 · ${comments} 条评论`,
+    communityWorking: '可用', communityMixed: '结果不一', communityBroken: '不可用',
+
+    // ===== 搜索与筛选 =====
+    searchGames: '搜索游戏', searchGamesHint: '按游戏名称搜索…', filterDlss: 'DLSS 状态', filterAddon: '插件', clearFilters: '清除筛选',
+    allApis: '所有 API', allDlss: '所有 DLSS 状态', allAddons: '任意插件状态', filterReady: '可安装', hasDlss: '已有 DLSS', dlssCurrent: 'DLSS 5 已安装 / 已是最新',
+    addonPresent: '已有插件', addonAbsent: '无插件', unknownApi: '未知 API', noMatchingGames: '没有匹配的游戏', changeFilters: '请尝试其他搜索条件，或清除筛选。',
+    filteredCount: (shown, total) => `显示 ${shown} / ${total}`, dx12Count: (n) => `${n} 个使用 DirectX 12`, dlssCount: (n) => `${n} 个有 DLSS`,
+    fArchitecture: '架构', fRoute: '安装方式', routeNative: '原生 DLSS（RenoDX）', routeFeeder: 'DLSS5-Feeder（无 DLSS / DLSS 不兼容）',
+
+    // ===== RenoDX DLSS 工具（多通道） =====
+    routeRenodx: 'RenoDX DLSS 工具（多通道）',
+    routeRenodxHint: 'ShortFuse 的 DLSS 工具版本。它会挂钩 Present，因此可用于自身不带 DLSS 的游戏，并且每帧执行 1 到 10 次神经渲染 — 可在 RenoDX 自己的页面（首页）中设置 Pass Count。它会替换普通的 RenoDX 组件；两者不能同时加载。',
+    errMultipassMissing: '此版本未附带 RenoDX DLSS 工具插件。', multipassConfigured: 'DLSS 工具已设为挂钩 Present，无需 DLSS',
+    multipassHint: '多通道组件每帧会执行多次神经渲染。它会替换普通组件 — 两者不能同时加载，本次安装会自动为你替换文件。',
+
+    // ===== 驱动故障提示 =====
+    driverFaultTitle: '此驱动可能无法运行神经渲染',
+    driverFaultBody: (names) => `${names}\n\n上游实测显示，616.64 及更新的驱动会在 NVIDIA 自家的神经运行时内部出错。也有不少人使用更新的驱动而没有问题，尤其是在关闭 MSI Afterburner 和 RivaTuner 时。\n\n安装会继续执行。如果游戏内始终没有出现神经渲染，616.56 是已知可用的最后一个驱动版本。`,
+    driverFaultGo: '仍然安装', driverFaultStopped: '已停止 — 未接受该驱动',
+
+    // ===== 设置项 =====
+    setTray: '保持系统托盘运行', setTrayHint: '关闭窗口时将其隐藏到托盘而不是退出。可使用托盘菜单中的「退出」来结束程序。', trayShow: '打开 DLSS 5 Swapper', trayQuit: '退出',
+    setAutoScan: '自动扫描所有磁盘', setAutoScanHint: '默认关闭。手动添加的文件夹始终会被扫描。',
+    setNotices: '社区通知', setNoticesHint: '当有人回复我的评论、提到我，或评论我关注的游戏时通知我。',
+    setGroupGames: '按商店分组显示游戏', setGroupGamesHint: '关闭后，所有游戏和模拟器将按字母顺序合并显示，不再按商店分区。',
+    supportBody: 'DLSS 5 Swapper 免费且基于 MIT 许可证。如果它为你省下了一晚上的折腾，可以请我喝杯咖啡 — 或用手机扫描二维码。',
   },
   es: {
     navHome: 'Inicio', navGames: 'Juegos', navHistory: 'Historial', navSettings: 'Ajustes', navAbout: 'Acerca de',

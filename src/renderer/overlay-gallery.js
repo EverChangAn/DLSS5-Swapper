@@ -1,6 +1,9 @@
 'use strict';
 (()=>{
-const $=id=>document.getElementById(id),text=(en,ar)=>document.documentElement.lang==='ar'?ar:en;
+const $=id=>document.getElementById(id);
+const olZh=()=>String(document.documentElement.lang||'en').toLowerCase().startsWith('zh');
+const GALLERY_ZH={"Interactive demo · no game changes":"交互式演示 · 不会改动游戏","Saved.":"已保存。","Choose your style. Preview it, then make it yours.":"选择你的风格，先预览，再定为你的。","Install overlay with DLSS":"随 DLSS 安装叠加层","＋ Add Overlay":"＋ 添加叠加层","Developer files":"开发者文件","Emerald":"翠玉绿","Azure":"天青蓝","Amethyst":"紫水晶","✓ Selected":"✓ 已选择","Select":"选择","◉ Preview":"◉ 预览","Delete this theme":"删除此主题","Custom native overlay: browser preview unavailable. Only test trusted files.":"自定义原生叠加层：无法在浏览器中预览。请只测试可信文件。","Install separately":"单独安装","Remove":"移除","Existing installations":"现有安装","Remove overlay only":"仅移除叠加层","Overlay service is not running. Restart DLSS 5 Swapper, then press the hotkey in game.":"叠加层服务未运行。请重启 DLSS 5 Swapper，然后在游戏内按下热键。","Overlay service connected to a running game.":"叠加层服务已连接到正在运行的游戏。","Overlay service ready, waiting for a game. Keep DLSS 5 Swapper open and press the hotkey in game.":"叠加层服务已就绪，正在等待游戏。请保持 DLSS 5 Swapper 开启，并在游戏内按下热键。","Done.":"完成。","My theme":"我的主题","Create a theme":"创建主题","Pick an accent colour. The panel's other shades are derived from it.":"选择一个强调色。面板的其他色阶由它派生。","Colour":"颜色","Name":"名称","Cancel":"取消","Save":"保存","Give the theme a name.":"请为主题命名。","Reserved / unsupported key. Try F9 or Ctrl + Shift + O.":"该按键被保留或不受支持。请尝试 F9 或 Ctrl + Shift + O。"};
+const text=(en,ar)=>olZh()?(GALLERY_ZH[en]||en):(document.documentElement.lang==='ar'?ar:en);
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const builtInThemes=[['green','Emerald','الأخضر'],['blue','Azure','الأزرق'],['purple','Amethyst','البنفسجي']];
 // The saved custom theme sits alongside the built-in three; its label is

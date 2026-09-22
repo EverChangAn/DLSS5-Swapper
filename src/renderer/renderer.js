@@ -10,6 +10,9 @@ const gameFilters = window.gameFilters;
 
 const ORDER = ['Steam', 'Epic Games', 'GOG', 'Xbox', 'Ubisoft', 'Added by hand', 'My folders'];
 const rank = (l) => (ORDER.indexOf(l) === -1 ? ORDER.length : ORDER.indexOf(l));
+// 分组标题只在显示时本地化；数据源与排序键保持原值，避免影响分组逻辑。
+const LAUNCHER_ZH = { 'Added by hand': '手动添加', 'My folders': '我的文件夹' };
+const launcherLabel = (l) => (getLang().toLowerCase().startsWith('zh') && LAUNCHER_ZH[l]) ? LAUNCHER_ZH[l] : l;
 const short = (v) => (v ? String(v).replace(/\.0$/, '') : null);
 const initials = (name) =>
   name.replace(/[^A-Za-z0-9 ]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('') || '?';

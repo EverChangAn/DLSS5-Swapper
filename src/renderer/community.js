@@ -70,6 +70,40 @@
       hideMessage: 'إخفاء الرسالة', blockAuthor: 'حظر الكاتب', copied: 'تم نسخ الرسالة.', moderationDone: 'تم تنفيذ الإجراء.',
       gameTotal: n => `${n.toLocaleString('ar')} لعبة`,
       facts: { title: 'اللعبة', route: 'الطريقة', api: 'الواجهة', gpu: 'كرت الشاشة', driver: 'التعريف', cpu: 'المعالج', os: 'النظام', app: 'إصدار البرنامج' }
+    },
+    zh: {
+      title: '社区实测游戏', subtitle: '来自 DLSS 5 Swapper 用户的真实测试结果。', refresh: '刷新', search: '搜索游戏', route: '安装方式', api: '渲染 API', result: '结果',
+      scopeAll: '全部', scopeMine: '我的游戏', scopeReports: '我的评论', mineHint: '仅显示本机已安装的游戏', reportsHint: '你提交过报告的游戏', reportsTotal: n => `你报告过 ${n} 个游戏`, reportsEmpty: '你还没有提交过任何游戏报告。', showingMine: n => `你的 ${n} 条报告`, sortLabel: '排序', sortRecent: '最新优先', sortReports: '报告最多', sortTitle: 'A–Z', noReportsYet: n => `本机暂无报告 · ${n}`, noReportsHint: '打开任意一个安装，然后成为第一个分享结果的人。', installedBadge: '已安装 DLSS 5', onPc: '本机已安装', gpuLabel: '显卡', allGpus: '所有显卡', myGpu: model => `我的显卡 · ${model}`, mineEmpty: '本机的游戏还没有任何社区报告。', mineTotal: n => `你的 ${n} 个游戏有报告`, showingGpu: (model, n) => `${model} 上有 ${n} 条报告`, allRoutes: '所有安装方式', allApis: '所有 API', allResults: '所有结果', working: '可用', issues: '可用但有瑕疵', broken: '不可用', mixed: '结果不一', clear: '清除筛选', loading: '正在加载社区结果…', empty: '没有匹配的社区报告。', offline: '社区服务不可用。请检查网络后重试。',
+      reports: n => `${n} 条报告`, comments: n => `${n} 条评论`, noComments: '还没有评论。', updated: '此卡片打开期间会实时更新。',
+      share: '分享你的结果', shareHint: '分享你的结果，帮助完善社区数据。', why: '你的报告能帮助所有人改善兼容性。', routeUsed: '使用的安装方式', choose: '请选择…', unknown: '暂无结果', yourResult: '你的结果', optionalComment: '备注（可选）', sent: '将要发送的数据', cancel: '取消', submit: '提交报告', submitting: '正在提交…', chooseRoute: '请选择你实际使用的安装方式。', chooseVerdict: '请选择你的结果。', sentOk: '你的报告已提交到社区。',
+      profile: '社区资料', profileHint: '你固定的头像和昵称会显示在评论旁。昵称每周只能修改一次。', displayName: '昵称', chooseIcon: '选择头像', save: '保存资料', saved: '资料已保存。', adminMode: '管理员模式', adminModeHint: '你的回复会带上官方名称、头像和管理员标识。', adminLogout: '退出管理员模式', adminLoggedOut: '已退出管理员模式。', unnamed: '匿名', addGame: '加入社区实测游戏', reactionFailed: '无法保存该表情回应。',
+      liveCount: '服务仅在内存中保留实时连接数，不存储任何连接标识。', removeMine: '清除我的社区活动', removeConfirm: '隐藏你的全部报告和回复，并重置公开的社区资料？此操作无法在程序内撤销。', removing: '正在清除…', removedMine: (reports, replies) => `已从公开视图移除 ${reports} 条报告和 ${replies} 条回复。`,
+      reply: '回复', back: '返回全部结果', noReplies: '还没有回复，来做第一个。',
+      edit: '编辑', remove: '删除', mine: '你', saveEdit: '保存', cancelEdit: '取消',
+      removeReport: '删除我的报告', editReport: '编辑我的报告', shareAgain: '修改你的结果',
+      removeReportTitle: '删除报告？', removeReplyTitle: '删除回复？', removeMineTitle: '清除你写过的全部内容？',
+      removeReportAsk: '删除你对此游戏的报告？如果没有其他人报告过，该游戏将从社区列表中移除。',
+      removeReplyAsk: '删除这条回复？', removed: '已删除。', follow: '此游戏有新动态时通知我',
+      unfollow: '不再通知', following: '通知已开启', mention: '提及某人',
+      noticeReplied: (who, game) => `${who} 在 ${game} 回复了你`,
+      noticeMentioned: (who, game) => `${who} 在 ${game} 提到了你`,
+      noticeOnGame: (who, game) => `${who} 评论了 ${game}`,
+      noticeReacted: (who, emoji, game) => `${who} 对你在 ${game} 的报告回应了 ${emoji}`,
+      noticeChatMention: who => `${who} 在聊天中提到了你`,
+      noticeChatReply: who => `${who} 在聊天中回复了你`,
+      noticeChatReaction: (who, emoji) => `${who} 对你在聊天中的消息回应了 ${emoji}`,
+      noticeMany: n => `${n} 条新社区消息`, noticeSomeone: '有人',
+      sentTitle: '报告已发送', sentNote: '你的结果已显示在此游戏的社区页面。谢谢！',
+      sentGo: '查看我的评论', sentStay: '完成',
+      failTitle: '未发送', failNote: '没有保存任何内容。你的文字仍在表单中，可以重试。',
+      failGo: '重试', failStay: '关闭', silentReport: '未填写评论 — 只发送了你的结果。',
+      replyingTo: '正在回复',
+      showing: (route, n) => `${route} · ${n} 条结果`, showAll: '显示所有安装方式',
+      replyPlaceholder: '回复这条结果…', send: '发送',
+      pinnedAnnouncement: '置顶公告', copyMessage: '复制消息', replyMention: '回复并提及',
+      hideMessage: '隐藏消息', blockAuthor: '拉黑作者', copied: '消息已复制。', moderationDone: '管理操作已执行。',
+      gameTotal: n => `${n.toLocaleString()} 个游戏`,
+      facts: { title: '游戏', route: '安装方式', api: 'API', gpu: 'GPU', driver: '驱动', cpu: 'CPU', os: '系统', app: '程序版本' }
     }
   };
   const avatars = ['🎮','🚀','⚡','🛡️','🔥','⭐','🎯','🕹️','👾','🤖','🐉','🦊','🐺','🦁','🦅','🐙','🌌','🌙','☀️','💎','🔧','🧪','🏁','🎧'];
@@ -127,7 +161,7 @@
   }
 
   const saveMine = () => { try { localStorage.setItem(MINE_KEY, JSON.stringify(state.mine)); } catch { /* private window, or storage off */ } };
-  const text = () => L[(window.i18n?.getLang?.() || 'en').startsWith('ar') ? 'ar' : 'en'];
+  const text = () => { const c = (window.i18n?.getLang?.() || 'en').toLowerCase(); return L[c] || L[c.split('-')[0]] || L.en; };
   const totals = verdicts => Object.values(verdicts || {}).reduce((sum, row) => ({ green: sum.green + (row.green || 0), yellow: sum.yellow + (row.yellow || 0), red: sum.red + (row.red || 0) }), { green: 0, yellow: 0, red: 0 });
   const statusClass = status => ['working', 'mixed', 'broken'].includes(status) ? status : 'unknown';
   const statusText = status => status === 'working' ? text().working : status === 'broken' ? text().broken : status === 'mixed' ? text().mixed : text().unknown;
