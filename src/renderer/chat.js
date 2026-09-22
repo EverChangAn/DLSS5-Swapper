@@ -51,9 +51,29 @@
       badImage: 'تعذر قراءة هذه الصورة.', profile: 'اختر اسمًا للمجتمع من الإعدادات لاستخدام المنشن.',
       noGames: 'لا توجد ألعاب مطابقة.', label: 'اكتب تاق', chooseLabel: 'اختر تاق للصورة', clearLabel: 'بدون تاق', dlssOn: 'DLSS 5 ON', dlssOff: 'DLSS 5 OFF',
       fit: 'ملاءمة', copied: 'تم النسخ.', saved: 'تم حفظ الصورة.', online: 'التحديث المباشر متصل'
+    },
+    zh: {
+      nav: '聊天', title: '社区聊天', subtitle: '与大家分享测试结果、截图和游戏发现。',
+      retention: '图片将在 24 小时后失效', refresh: '刷新', older: '加载更早的消息',
+      emptyTitle: '开始聊天', emptyBody: '分享一条经验、截图或游戏卡片。',
+      placeholder: '发消息给社区…', hint: '回车发送 · Shift+回车换行 · 可粘贴或拖入图片',
+      newMessages: '有新消息 ↓', addTo: '添加到消息', share: '分享内容', photos: '图片',
+      photosSub: '最多 4 张图片', game: '游戏卡片', gameSub: '搜索社区结果', findGame: '查找游戏',
+      findPlaceholder: '输入游戏名称…', reports: n => `${n} 条报告`,
+      comments: n => `${n} 条评论`, working: '可用', broken: '不可用', mixed: '结果不一', unknown: '暂无结果',
+      replying: '正在回复', editing: '正在编辑消息', imageExpired: '此图片已在 24 小时后失效。',
+      edited: '已编辑', reply: '回复并提及', copy: '复制消息', edit: '编辑消息', remove: '删除消息',
+      saveImage: '保存图片', hide: '隐藏消息', block: '拉黑作者', adminDelete: '永久删除',
+      deleteTitle: '删除这条消息？', deleteBody: '所有人都将看不到这条消息。',
+      moderateTitle: '执行管理操作？', cancel: '取消', confirm: '确认', compression: '正在优化图片…',
+      sending: '正在发送…', uploadFailed: '消息未能发送。你的草稿仍然保留。',
+      tooMany: '最多只能附加 4 张图片。', tooLarge: '每张原图最大 15 MB。',
+      badImage: '无法读取该图片。', profile: '使用提及功能前，请先在设置中选择社区昵称。',
+      noGames: '没有匹配的社区游戏。', label: '添加标签', chooseLabel: '选择标签', clearLabel: '无标签', dlssOn: 'DLSS 5 已开启', dlssOff: 'DLSS 5 已关闭',
+      fit: '适应窗口', copied: '已复制。', saved: '图片已保存。', online: '实时更新已连接'
     }
   };
-  const words = () => L[(window.i18n?.getLang?.() || 'en').startsWith('ar') ? 'ar' : 'en'];
+  const words = () => { const c = (window.i18n?.getLang?.() || 'en').toLowerCase(); return L[c] || L[c.split('-')[0]] || L.en; };
   const readJson = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; } };
   const state = {
     messages: [], etag: null, version: 0, hasMore: false, timer: null, busy: false, initial: true,

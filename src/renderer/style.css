@@ -870,6 +870,15 @@ select option { background: var(--panel); color: var(--text); }
 .setting-switch:disabled { cursor: wait; opacity: .6; }
 .about p { font-size: 13.5px; line-height: 1.9; }
 .about .dim { color: var(--dim); }
+/* 汉化署名链接（汉化版专属，跟随 .dim 的弱化配色） */
+.about .dim .about-signature-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+}
+.about .dim .about-signature-link:hover { text-decoration-thickness: 2px; }
 .about-links { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
 .about-links a { text-decoration: none; }
 .about-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

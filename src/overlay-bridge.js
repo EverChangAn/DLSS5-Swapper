@@ -7,7 +7,7 @@ const protocol = require('./overlay-protocol');
 const preferences=require('./overlay-preferences');
 const { ipcMain } = require('electron');
 
-module.exports = async function startOverlayBridge({ BrowserWindow, userData, idleTakeoverMs = 5000 }) {
+module.exports = async function startOverlayBridge({ BrowserWindow, userData, idleTakeoverMs = 5000, getLang }) {
   const token = crypto.randomBytes(16).toString('hex');
   const endpoint = path.join(userData, 'overlay-bridge.endpoint');
   // The add-on composes the same name from LAB_OVERLAY_PROFILE (see
@@ -84,8 +84,17 @@ module.exports = async function startOverlayBridge({ BrowserWindow, userData, id
   }
   win.webContents.on('render-process-gone', (_event, details) => { console.error('Lab overlay renderer stopped:', details.reason); close(); });
   win.on('closed', close);
+  // 游戏内面板是一个独立的 offscreen 文档，主窗口的 applyLang() 影响不到它，
+  // 必须把当前语言显式注入，否则它会一直按 HTML 里写死的 lang="en" 渲染。
+  const syncLang = () => {
+    if (closed || win.isDestroyed() || win.webContents.isDestroyed()) return;
+    let code = 'en';
+    try { if (typeof getLang === 'function') code = String(getLang() || 'en'); } catch { /* 回退 en */ }
+    win.webContents.executeJavaScript(`document.documentElement.lang=${JSON.stringify(code)};`).catch(() => {});
+  };
   try {
   await win.loadFile(path.join(__dirname, 'renderer/overlay-panel.html'));
+  syncLang();
   win.webContents.send('lab-overlay-preferences',preferences.read(userData));
   preferences.events.on('change',preferenceChanged);
   const height = Math.ceil(await win.webContents.executeJavaScript(`document.querySelector('#panel').getBoundingClientRect().height`));
@@ -179,5 +188,5 @@ module.exports = async function startOverlayBridge({ BrowserWindow, userData, id
     endpoint,
     pipeName
   });
-  return { window: win, endpoint, pipeName, state, getFrame: () => latest, getStatus:()=>runtimeStatus, close };
+  return { window: win, endpoint, pipeName, state, getFrame: () => latest, getStatus:()=>runtimeStatus, syncLang, close };
 };
