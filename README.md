@@ -7,7 +7,7 @@
 > 本仓库是 [DLSS 5 Swapper](https://github.com/rakanki911/DLSS5-Swapper) 的**第三方简体中文汉化版**，
 > 基于原版 **v2.2.7** 制作，由 **EverChangAn** 汉化补全。
 >
-> - **汉化分支**：[`zh-cn`](../../tree/zh-cn)（默认分支 `main` 保持与上游一致）
+> - **汉化代码**：默认分支 `main` 即为汉化版
 > - **下载**：[Releases](../../releases) —— 免安装版 / 汉化补丁
 > - **B 站**：[@显卡长安](https://space.bilibili.com/5199773)
 >
