@@ -1,3 +1,35 @@
+> ## 简体中文汉化版
+><img width="1920" height="1290" alt="5d9c4fd481b91308dd3527d23fd9a9c3" src="https://github.com/user-attachments/assets/167c0a1b-02f7-4788-bf55-0f444e14a684" />
+<img width="1920" height="1290" alt="a6bbd8324a12833cbfc990455e60eca2" src="https://github.com/user-attachments/assets/374d7936-da64-4198-81dc-34fca83358c1" />
+<img width="574" height="763" alt="f750c551d0960309b1b9ca425d6d6658" src="https://github.com/user-attachments/assets/a6cbf681-3cf8-424e-a71b-81b70f14e3e6" />
+<img width="579" height="937" alt="07a37bca5717b268ae48a38e56ae421f" src="https://github.com/user-attachments/assets/3e429419-3119-4a31-9f07-7845925472f4" />
+
+> 本仓库是 [DLSS 5 Swapper](https://github.com/rakanki911/DLSS5-Swapper) 的**第三方简体中文汉化版**，
+> 基于原版 **v2.2.7** 制作，由 **EverChangAn** 汉化补全。
+>
+> - **汉化分支**：[`zh-cn`](../../tree/zh-cn)（默认分支 `main` 保持与上游一致）
+> - **下载**：[Releases](../../releases) —— 免安装版 / 汉化补丁
+> - **B 站**：[@显卡长安](https://space.bilibili.com/5199773)
+>
+> ### 汉化了什么
+>
+> 全部界面文案，约 **630 条**：主界面 219、主进程共享字典 86、社区聊天 59、
+> 社区实测游戏 130、游戏内叠加层约 136。原版中文覆盖率 37.5%，现为 100%。
+>
+> 此外修复了一个上游缺陷：游戏内叠加层面板此前无法接收应用语言设置，
+> 导致所有非英语用户在游戏内看到的面板均为英文。
+>
+> ### 与原版的关系
+>
+> 原版由 **Rakan Alkhaldi** 开发，基于 **MIT 许可证**发布。本汉化版为衍生作品，
+> 同样遵循 MIT 许可证，**非官方发布**，与原作者无隶属关系。
+>
+> ---
+>
+> *以下为原项目 README 原文。*
+
+
+
 <p align="center">
   <img src="docs/banner.png" alt="DLSS 5 Swapper" width="100%">
 </p>
